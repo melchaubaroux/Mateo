@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo App</title>
+    <link rel="stylesheet" href="body.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    
+
+</head>
+<body>
+    <header>
+        <h1>Météo App</h1>
+        <form id="location-form">
+            <input type="text" id="location-input" placeholder="Entrez votre ville...">
+            
+            <select id="date" name="date">
+              <option value="">Choisir une date</option>
+              <option value="1">j+1</option>
+              <option value="2">j+2</option>
+              <option value="3">j+3</option>
+              <option value="4">j+4</option>
+              <option value="5">j+5</option>
+              <option value="6">j+6</option>
+              <option value="7">j+7</option>
+              <option value="8">j+8</option>
+              <option value="9">j+9</option>
+              <option value="10">j+10</option>
+              <option value="11">j+11</option>
+              <option value="12">j+12</option>
+              <option value="13">j+13</option>
+              <option value="14">j+14</option>
+            </select>
+            
+
+            <button type="submit">Rechercher</button>
+        </form>
+    </header>
+
+
+    <div id="map"></div>
+
+
+    <main>
+
+        <div id="weather"></div>
+
+    </main>
+
+
+
+    <footer>
+        <p>&copy;  Matéo-App by ChaubaCorp ®</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
