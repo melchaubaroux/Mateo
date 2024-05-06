@@ -52,8 +52,11 @@ def request_table(table):
 @app.get("/pull/{location}/{date}", response_class=JSONResponse)
 def request_table(location,date):
     conn,cur=connection_db()
-    print(calibrage(date))
-    return search(cur,location,calibrage(date))
+    # newdate=calibrage(date)
+    # newdate=date.replace("_","/")
+    newdate=date
+    
+    return search(cur,location,newdate)
 
 
 if __name__ == '__main__':

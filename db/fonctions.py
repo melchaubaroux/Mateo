@@ -1,6 +1,7 @@
 
 import psycopg2
 import requests
+import datetime
 
 import config_local as config
 
@@ -68,7 +69,7 @@ def table_existance (table) :
 # fonction create table 
 def create_table (table_name,colonne_name,colonne_type):
 
-    print("create table process beginning")
+    print("create table process beginning : ")
 
     conn,cur=connection_db()
 
@@ -139,9 +140,9 @@ def get_colonne (ref):
 
 # TODO multi parametre ou formulaire
 def search (cursor,location,date):
-    date = calibrage (date)
+    # date = calibrage (date)
 
-    cursor.execute(f"SELECT * FROM predictions WHERE city_name LIKE '{location}' AND dt = {date} ;")
+    cursor.execute(f"SELECT * FROM predictions WHERE city_name = '{location}' AND dt = {date} ")
 
     data=cursor.fetchone()
 
@@ -156,43 +157,29 @@ def get_table (table):
     return cur.fetchall()
 
 
-
-
-def calibrage (timestamp) : 
-    """
-        sert a convertir un timestamp en celle de minuit de la mme journée 
-        afin de pouvoir trouver les correspondance dans la base de donnée
+# def calibrage (timestamp) : 
+#     """
+#         sert a convertir un timestamp en celle de minuit de la mme journée 
+#         afin de pouvoir trouver les correspondance dans la base de donnée
     
-    """
+#     """
 
-    import datetime
 
-    # timestamp to datetime 
-    date = datetime.datetime.fromtimestamp(int(timestamp))
+#     # timestamp=int(str(timestamp)[:-2])
 
-    # datetime to string
-    date_string =  date.strftime('%Y-%m-%d %H:%M:%S')
+#     # timestamp to datetime 
+#     date = datetime.datetime.fromtimestamp(int(timestamp))
+
+#     # datetime to string
+#     date_string =  date.strftime('%Y-%m-%d %H:%M:%S')
     
-    # date alteration 
-    formated_date=date_string[:-8]+"02:00:00"
+#     # date alteration 
+#     formated_date=date_string[:-8]+"02:00:00"
 
-    # string to datetime 
-    date = datetime.datetime.strptime(formated_date, '%Y-%m-%d %H:%M:%S')
+#     # string to datetime 
+#     date = datetime.datetime.strptime(formated_date, '%Y-%m-%d %H:%M:%S')
 
-    # datetime to stamp 
-    return  int(datetime.datetime.timestamp(date))
-
-
-    
-
-
- 
-
-
-
-
-
-
-
-
+#     # datetime to stamp 
+#     return  int(datetime.datetime.timestamp(date))
+   
 
